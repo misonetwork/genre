@@ -50,7 +50,7 @@ fun test_create_genre_and_derive() {
     // The frozen Genre lives at the derived id, with the canonical name.
     scenario.next_tx(CURATOR);
     let genre = scenario.take_immutable_by_id<Genre>(genre_id);
-    assert!(g::id(&genre) == genre_id);
+    assert!(object::id(&genre) == genre_id);
     assert!(g::name(&genre) == b"HIP_HOP".to_string());
     ts::return_immutable(genre);
 

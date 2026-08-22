@@ -98,7 +98,7 @@ public fun new(_: &GenreRegistryCap, registry: &mut GenreRegistry, name: String)
         name: name_copy,
     };
 
-    emit(GenreCreatedEvent { genre_id: genre.id(), name: *genre.name() });
+    emit(GenreCreatedEvent { genre_id: object::id(&genre), name: *genre.name() });
     transfer::freeze_object(genre);
 }
 
@@ -109,11 +109,6 @@ public fun derive_genre_id(self: &GenreRegistry, name: String): ID {
 }
 
 // === View Functions ===
-
-/// Returns the genre's object id.
-public fun id(self: &Genre): ID {
-    self.id.to_inner()
-}
 
 /// Returns the genre's canonical name.
 public fun name(self: &Genre): &String {
